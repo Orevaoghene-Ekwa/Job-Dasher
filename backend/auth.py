@@ -5,8 +5,11 @@ from flask_jwt_extended import (create_access_token,
                                 create_refresh_token, jwt_required,
                                 get_jwt_identity)
 from flask import request, jsonify, make_response
+from decouple import config
 
 auth_ns = Namespace('auth', description="A namespace for authentication")
+admin_email = config('ADMIN_EMAIL')
+admin_password = config('ADMIN_PASSWORD')
 
 sign_up_model = auth_ns.model(
     "SignUp",
@@ -62,14 +65,28 @@ class Login(Resource):
 
         db_user = User.query.filter_by(email=email).first()
 
-        if db_user and check_password_hash(db_user.password, password):
-            access_token = create_access_token(identity=db_user.email)
-            refresh_token = create_refresh_token(identity=db_user.email)
+        if (admin_email == email and admin_password == password):
+            access_token = create_access_token(identity=admin_email)
+            refresh_token = create_refresh_token(identity=admin_email)
+            role = "admin"
 
             return jsonify(
                 {
                     "access_token":access_token,
-                    "refresh_token":refresh_token
+                    "refresh_token":refresh_token,
+                    "role":role
+                }
+            )
+        elif db_user and check_password_hash(db_user.password, password):
+            access_token = create_access_token(identity=db_user.email)
+            refresh_token = create_refresh_token(identity=db_user.email)
+            role = "user"
+
+            return jsonify(
+                {
+                    "access_token":access_token,
+                    "refresh_token":refresh_token,
+                    "role":role
                 }
             )
         
