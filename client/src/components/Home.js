@@ -60,7 +60,8 @@ const HomePage=()=>{
     const [logged]=useAuth()
     return(
         <div>
-            {logged ? (isAdmin ? <AdminHome /> : <LoggedInHome />) : <LoggedOutHome />}
+            {logged ? <LoggedInHome /> : <LoggedOutHome />}
+            {/* {logged ? (isAdmin ? <AdminHome /> : <LoggedInHome />) : <LoggedOutHome />} */}
         </div>
     )
 }
