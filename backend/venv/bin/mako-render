@@ -1,4 +1,4 @@
-#!/home/reva-baba/webpages/job-dasher/backend/venv/bin/python3
+#!/home/reva-baba/Job-Dasher/backend/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
