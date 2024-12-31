@@ -13,6 +13,7 @@ import SignUpPage from './components/SignUp';
 import LoginPage from './components/Login';
 import CreateJobPage from './components/CreateJob';
 import AdminHome from './components/Admin';
+import AboutPage from './components/About';
 
 
 const App = ()=>{
@@ -28,6 +29,7 @@ const App = ()=>{
                     <Route path='/login' element={<LoginPage/>} />
                     <Route path='/create-job' element={<CreateJobPage/>}/>
                     <Route path='/admin' element={<AdminHome/>}/>
+                    <Route path='/about' element={<AboutPage/>}/>
                 </Routes>
             </div> 
         </Router>

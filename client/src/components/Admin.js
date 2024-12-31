@@ -119,13 +119,13 @@ export const AdminHome = ()=>{
                         <Form.Group>
                             <Form.Label>Title</Form.Label>
                             <Form.Control type="text"
-                                {...register("title", {required:true,maxLength:25})}
+                                {...register("title", {required:true,maxLength:50})}
                             />
                         </Form.Group>
                         {errors.title && <p style={{color:"red"}}><
                             small>Title is required</small></p>}
                         {errors.title?.type==="maxLength" && <p style={{color:"red"}}>
-                            <small>Title should be less than 25 characters</small></p>}
+                            <small>Title should be less than 50 characters</small></p>}
                         <br></br>
                         <Form.Group>
                             <Form.Label>Description</Form.Label>
