@@ -3,7 +3,7 @@ import {Form, Button, Alert} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { login } from "../auth";
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom";
 
 const LoginPage=()=>{
 
@@ -26,7 +26,12 @@ const LoginPage=()=>{
         .then(res=>res.json())
         .then(data=>{
             login(data.access_token)
-            navigate("/")
+            if (data.role === "admin"){
+                navigate("/admin")
+            }
+            else {
+                navigate("/")
+            }
         })
         .catch(err=>{
             setServerResponse("Incorrect email or password")

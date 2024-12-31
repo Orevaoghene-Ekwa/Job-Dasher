@@ -12,6 +12,7 @@ import HomePage from './components/Home';
 import SignUpPage from './components/SignUp';
 import LoginPage from './components/Login';
 import CreateJobPage from './components/CreateJob';
+import AdminHome from './components/Admin';
 
 
 const App = ()=>{
@@ -26,6 +27,7 @@ const App = ()=>{
                     <Route path='/signup' element={<SignUpPage />}/>
                     <Route path='/login' element={<LoginPage/>} />
                     <Route path='/create-job' element={<CreateJobPage/>}/>
+                    <Route path='/admin' element={<AdminHome/>}/>
                 </Routes>
             </div> 
         </Router>

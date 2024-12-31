@@ -14,7 +14,7 @@ const LoggedInLinks= ()=>{
                 <Link className="nav-link active" to="/create-job">Create Job</Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link active" to="/login" onClick={logout}>Log Out</Link>
+                <Link className="nav-link active" to="/" onClick={logout}>Log Out</Link>
             </li>
         </>
     )
@@ -33,15 +33,24 @@ const LoggedOutLinks = ()=>{
     )
 }
 
-const AdminLinks = ()=>{
-    return (
-        <>
-            <li className="nav-item">
-                <Link className="nav-Link active" to="/edit">Edit</Link>
-            </li>
-        </>
-    )
-}
+// const AdminLinks = ()=>{
+//     return (
+//         <>
+//             <li className="nav-item">
+//                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+//             </li>
+//             <li className="nav-item">
+//                 <Link className="nav-link active" to="/create-job">Create Job</Link>
+//             </li>
+//             <li className="nav-item">
+//                 <Link className="nav-Link active" to="/edit">Edit</Link>
+//             </li>
+//             <li className="nav-item">
+//                 <Link className="nav-link active" to="/" onClick={logout}>Log Out</Link>
+//             </li>
+//         </>
+//     )
+// }
 
 const NavBar =()=>{
 

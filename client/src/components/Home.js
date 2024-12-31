@@ -2,17 +2,11 @@ import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth";
 import Job from "./Job";
-import { Modal, Form, Button } from "react-bootstrap";
-import { useForm } from "react-hook-form";
-
 
 
 const LoggedInHome = ()=>{
 
     const [jobs,setJobs]=useState([]);
-    const [show,setShow]=useState(false);
-    const {register,handleSubmit,setValue,formState:{errors}}=useForm();
-    const [jobId,setJobId]=useState(0);
 
     useEffect(
         ()=>{
@@ -61,7 +55,6 @@ const HomePage=()=>{
     return(
         <div>
             {logged ? <LoggedInHome /> : <LoggedOutHome />}
-            {/* {logged ? (isAdmin ? <AdminHome /> : <LoggedInHome />) : <LoggedOutHome />} */}
         </div>
     )
 }

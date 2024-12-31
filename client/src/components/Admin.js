@@ -1,6 +1,8 @@
-import { Modal, Form, Button } from "react-bootstrap";
+import React, {useEffect, useState} from "react";
+import { Modal, Form, Button, Card } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
-const AdminHome = ()=>{
+export const AdminHome = ()=>{
 
     const [jobs,setJobs]=useState([]);
     const [show,setShow]=useState(false);
@@ -85,6 +87,20 @@ const AdminHome = ()=>{
     
     }
 
+    const EditJob=({title,description,onClick,onDelete})=>{
+        return (
+            <Card className="job">
+                <Card.Body>
+                    <Card.Title>{title}</Card.Title>
+                    <p>{description}</p>
+                    <Button variant="primary" onClick={onClick}>Update</Button>
+                    {" "}
+                    <Button variant="danger " onClick={onDelete}>Delete</Button>
+                </Card.Body>
+            </Card>
+        )
+    }
+
     return (
         <div className="home container">
             <h1>I did it!</h1>
@@ -131,7 +147,7 @@ const AdminHome = ()=>{
             {
                 jobs.map(
                     (job,index)=>(
-                        <Job 
+                        <EditJob 
                             title={job.title} 
                             key={index}
                             description={job.description}
