@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 
 const LoginPage=()=>{
 
-    const {register,handleSubmit,reset,watch,formState:{errors}}=useForm()
+    const {register,handleSubmit,reset,formState:{errors}}=useForm()
     const [show,setShow]=useState(false)
     const [serverResponse,setServerResponse]=useState('')
 
