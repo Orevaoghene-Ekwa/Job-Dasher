@@ -4,4 +4,23 @@ Job-Dasher is a web application designed to streamline job tracking and manageme
 
 ## Features
 - Frontend: React.js, Bootstrap
--
+- Backend: Python-Flask
+- Database: sqlite
+- Routing: React Router
+
+## Getting Started
+
+### Prerequisites
+
+Ensure you have the following installed
+- Python
+- Node.js
+- npm
+
+### Installation
+1. Clone the repository
+
+```
+git clone https://github.com/Orevaoghene-Ekwa/Job-Dasher.git
+cd Job-Dasher
+```
