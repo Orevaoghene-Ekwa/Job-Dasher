@@ -44,7 +44,7 @@ const SignUpPage=()=>{
     }
 
     return(
-        <div className="container">
+        <main className="container">
             <div className="form">
 
                 {show?
@@ -113,7 +113,7 @@ const SignUpPage=()=>{
                     </Form.Group>
                 </Form>
             </div>
-        </div>
+        </main>
     )
 }
 

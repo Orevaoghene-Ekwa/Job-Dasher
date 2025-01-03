@@ -1,16 +1,23 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    margin: 0;
 }
 
-main {
+#root {
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
-}
+} 
 
 .navbar {
-    min-height: 10%;
+    min-height: 60px;
 }
 
 .navbar-brand {
@@ -42,15 +49,12 @@ main {
     background-color: #D3D3D3;
 }
 
-.hero {
-    margin: auto;
-    margin-top: 15%;
-    width: 65%;
-    min-height: 55vh;
+footer {
+    margin-top: 20px;
+    padding: 1rem;
     text-align: center;
 }
 
-footer {
-    text-align: center;
-    min-height: 10vh;
+main {
+    flex-grow: 1;
 }

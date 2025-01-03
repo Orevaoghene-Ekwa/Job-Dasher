@@ -22,7 +22,7 @@ const App = ()=>{
 
     return (
         <Router>
-            <div className=''>
+            {/* <div className=''> */}
                 <NavBar/>
                 <Routes>
                     <Route path='/' element={<HomePage />}/>
@@ -33,7 +33,7 @@ const App = ()=>{
                     <Route path='/about' element={<AboutPage/>}/>
                 </Routes>
                 <Footer/>
-            </div> 
+            {/* </div>  */}
         </Router>
     );
 };

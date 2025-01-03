@@ -41,7 +41,7 @@ const LoginPage=()=>{
         reset()
     }
     return(
-        <div className="container">
+        <main className="container">
             <div className="form">
                 {show?
                     <>
@@ -88,7 +88,7 @@ const LoginPage=()=>{
                     </Form.Group>
                 </Form>
             </div>
-        </div>
+        </main>
     )
 }
 

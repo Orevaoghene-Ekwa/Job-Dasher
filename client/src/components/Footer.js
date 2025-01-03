@@ -1,22 +1,20 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useAuth, logout } from '../auth'
+import React from 'react';
 
 
 const Footer =()=>{
 
     return ( 
-        <Footer className="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+        <footer className="bg-dark">
             <div className="container-fluid">
                 <footer class="bg-dark text-white-50">
-                <span>©Job Dasher.</span>
+                <span>©Job Dasher 2024.</span>
             </footer>
             </div>
-        </Footer>
+        </footer>
     )
 }
 
 
 
-export default Footer
+export default Footer;
 

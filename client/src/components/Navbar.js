@@ -57,7 +57,7 @@ const NavBar =()=>{
     const [logged]=useAuth()
 
     return ( 
-        <nav className="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+        <header className="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">Job Dasher</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,10 +73,10 @@ const NavBar =()=>{
                     </form> */}
                 </div>
             </div>
-        </nav>
+        </header>
     )
 }
 
 
 
-export default NavBar
+export default NavBar;

@@ -78,6 +78,7 @@ const LoggedInHome = ()=>{
                             key={index}
                             // description={job.description}
                             date={"Posted:time_of_posting"}
+                            type={job.type}
                         />
                         </Link>
                     )
@@ -90,14 +91,12 @@ const LoggedInHome = ()=>{
 const LoggedOutHome = ()=>{
     return(
         <div className="container center-text">
-            <main className="hero">
-                <h1 className="heading">Find the Latest Job postings With Ease</h1>
-                <p class="lead">Create an account to gain access to our list of jobs.</p>
-                <p class="lead">
-                <Link to="signup" className="btn btn-primary btn-lg">Get Started</Link>
-                <br></br>
-                </p>
-            </main>
+            <h1 className="heading">Find the Latest Job postings With Ease</h1>
+            <p class="lead">Create an account to gain access to our list of jobs.</p>
+            <p class="lead">
+            <Link to="signup" className="btn btn-primary btn-lg">Get Started</Link>
+            <br></br>
+            </p>
         </div>
     )
 }
@@ -106,9 +105,9 @@ const LoggedOutHome = ()=>{
 const HomePage=()=>{
     const [logged]=useAuth()
     return(
-        <div>
+        <main>
             {logged ? <LoggedInHome /> : <LoggedOutHome />}
-        </div>
+        </main>
     )
 }
 
