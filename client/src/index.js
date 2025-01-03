@@ -14,6 +14,7 @@ import LoginPage from './components/Login';
 import CreateJobPage from './components/CreateJob';
 import AdminHome from './components/Admin';
 import AboutPage from './components/About';
+import Footer from './components/Footer';
 
 
 const App = ()=>{
@@ -31,6 +32,7 @@ const App = ()=>{
                     <Route path='/admin' element={<AdminHome/>}/>
                     <Route path='/about' element={<AboutPage/>}/>
                 </Routes>
+                <Footer/>
             </div> 
         </Router>
     );

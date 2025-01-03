@@ -77,7 +77,7 @@ const LoggedInHome = ()=>{
                             title={job.title} 
                             key={index}
                             // description={job.description}
-                            date={"posted:time_of_posting"}
+                            date={"Posted:time_of_posting"}
                         />
                         </Link>
                     )
@@ -89,10 +89,15 @@ const LoggedInHome = ()=>{
 
 const LoggedOutHome = ()=>{
     return(
-        <div className="home container">
-            <h1 className="heading">Welcome to JobDasher</h1>
-            <br></br>
-            <Link to="signup" className="btn btn-primary btn-lg">Get Started</Link>
+        <div className="container center-text">
+            <main className="hero">
+                <h1 className="heading">Find the Latest Job postings With Ease</h1>
+                <p class="lead">Create an account to gain access to our list of jobs.</p>
+                <p class="lead">
+                <Link to="signup" className="btn btn-primary btn-lg">Get Started</Link>
+                <br></br>
+                </p>
+            </main>
         </div>
     )
 }

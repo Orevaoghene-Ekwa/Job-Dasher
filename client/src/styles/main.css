@@ -1,3 +1,17 @@
+body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+.navbar {
+    min-height: 10%;
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+    margin-right: 50px;
+    padding-left: 24px;
+}
 .container {
     margin-top: 50px;
 }
@@ -17,4 +31,20 @@
 
 .sub {
     text-decoration: none;
+}
+.sub :hover{
+    background-color: #D3D3D3;
+}
+
+.hero {
+    margin: auto;
+    margin-top: 15%;
+    width: 65%;
+    min-height: 55vh;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    min-height: 10vh;
 }

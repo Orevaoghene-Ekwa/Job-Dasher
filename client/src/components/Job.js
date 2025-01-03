@@ -6,8 +6,8 @@ export const Job=({title,description,date})=>{
     return (
         <Card className="job">
             <Card.Body>
-                <Card.Title>{title}</Card.Title>
                 <small>{date}</small>
+                <Card.Title>{title}</Card.Title>
                 <p>{description}</p>
             </Card.Body>
         </Card>
