@@ -24,7 +24,13 @@ body {
     font-size: 1.5em;
     margin-right: 50px;
     padding-left: 24px;
+    display: flex;
 }
+
+.navbar-nav {
+    padding-left: 30%;
+}
+
 .container {
     margin-top: 50px;
 }
@@ -49,6 +55,12 @@ body {
     background-color: #D3D3D3;
 }
 
+.hero {
+    width: 50%;
+    margin-top: 10%;
+    text-align: center;
+}
+
 footer {
     margin-top: 20px;
     padding: 1rem;
@@ -57,4 +69,11 @@ footer {
 
 main {
     flex-grow: 1;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }

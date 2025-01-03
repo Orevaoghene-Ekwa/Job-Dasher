@@ -31,7 +31,7 @@ const CreateJobPage=()=>{
     }
 
     return(
-        <div className="container">
+        <main className="container">
             <h1>Create A Job</h1>
             <Form>
                 <Form.Group>
@@ -64,7 +64,7 @@ const CreateJobPage=()=>{
                         </Button>
                 </Form.Group>
             </Form>
-        </div>
+        </main>
     )
 }
 

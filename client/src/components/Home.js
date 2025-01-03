@@ -64,7 +64,7 @@ const LoggedInHome = ()=>{
                 </Modal.Body>
 
             </Modal>
-            <h1>List of Jobs</h1>
+            <h1>Job Listings</h1>
             {
                 jobs.map(
                     (job,index)=>(
@@ -90,8 +90,8 @@ const LoggedInHome = ()=>{
 
 const LoggedOutHome = ()=>{
     return(
-        <div className="container center-text">
-            <h1 className="heading">Find the Latest Job postings With Ease</h1>
+        <div className="container center-text hero">
+            <h1 className="heading">Find Latest Job Postings With Ease</h1>
             <p class="lead">Create an account to gain access to our list of jobs.</p>
             <p class="lead">
             <Link to="signup" className="btn btn-primary btn-lg">Get Started</Link>
