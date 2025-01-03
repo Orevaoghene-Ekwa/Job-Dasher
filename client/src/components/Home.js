@@ -91,8 +91,8 @@ const LoggedInHome = ()=>{
 const LoggedOutHome = ()=>{
     return(
         <div className="container center-text hero">
-            <h1 className="heading">Find Latest Job Postings With Ease</h1>
-            <p class="lead">Create an account to gain access to our list of jobs.</p>
+            <h1 className="heading">Welcome to Job Dasher</h1>
+            <p class="lead">where opportunities and talents meet.</p>
             <p class="lead">
             <Link to="signup" className="btn btn-primary btn-lg">Get Started</Link>
             <br></br>
