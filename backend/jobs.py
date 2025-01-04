@@ -10,7 +10,11 @@ job_model = job_ns.model(
     {
         "id":fields.Integer(),
         "title":fields.String(),
-        "description":fields.String()
+        "description":fields.String(),
+        "date":fields.String(),
+        "time":fields.String(),
+        "job-type":fields.String(),
+        "link":fields.String()
     }
 )
 
@@ -39,7 +43,11 @@ class JobResource(Resource):
         data = request.get_json()
         new_job = Job(
             title = data.get('title'),
-            description = data.get('description')
+            description = data.get('description'),
+            date = data.get('date'),
+            time = data.get('time'),
+            job_type = data.get('job_type'),
+            link = data.get('link')
         )
         new_job.save()
 
@@ -63,7 +71,12 @@ class JobResource(Resource):
         """Update a job by id"""
         job_to_update = Job.query.get_or_404(id)
         data = request.get_json()
-        job_to_update.update(data.get('title'), data.get('description'))
+        job_to_update.update(
+            data.get('title'),
+            data.get('description'),
+            data.get('job_type'),
+            data.get('link')
+        )
 
         return job_to_update
 
