@@ -14,7 +14,7 @@ job_model = job_ns.model(
         "description":fields.String(),
         "date":fields.String(),
         "time":fields.String(),
-        "job-type":fields.String(),
+        "job_type":fields.String(),
         "link":fields.String()
     }
 )
@@ -46,8 +46,6 @@ class JobResource(Resource):
             title = data.get('title'),
             salary = data.get('salary'),
             description = data.get('description'),
-            date = data.get('date'),
-            time = data.get('time'),
             job_type = data.get('job_type'),
             link = data.get('link')
         )

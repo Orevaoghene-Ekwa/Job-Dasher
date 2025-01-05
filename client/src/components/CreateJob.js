@@ -41,9 +41,44 @@ const CreateJobPage=()=>{
                     />
                 </Form.Group>
                 {errors.title && <p style={{color:"red"}}><
-                    small>Title is required</small></p>}
+                    small>This field is required</small></p>}
                 {errors.title?.type==="maxLength" && <p style={{color:"red"}}>
                     <small>Title should be less than 25 characters</small></p>}
+                <br></br>
+                <Form.Group>
+                    <Form.Label>Salary</Form.Label>
+                    <Form.Control
+                        type="text"
+                        {...register("salary", {
+                            required: "This field is required",
+                            validate: (value) =>
+                                /^[0-9]+$/.test(value) || "Only numeric values are allowed"
+                        })}
+                    />
+                    {errors.salary && (
+                        <span style={{ color: "red", fontSize: "small" }}>
+                            {errors.salary.message}
+                        </span>
+                    )}
+                </Form.Group>
+                <br></br>
+                <Form.Group>
+                    <Form.Label>Job Type</Form.Label>
+                    <Form.Select
+                        {...register("job_type", {
+                            required:true
+                        })}
+                    >
+                        <option value="">Select Job Type</option>
+                        <option value="remote">Remote</option>
+                        <option value="onsite">Onsite</option>
+                    </Form.Select>
+                    {errors.job_type && (
+                        <span style={{ color: "red", fontSize: "small" }}>
+                            "Please select a job type"
+                        </span>
+                    )}
+                </Form.Group>
                 <br></br>
                 <Form.Group>
                     <Form.Label>Link</Form.Label>
@@ -52,7 +87,7 @@ const CreateJobPage=()=>{
                     />
                 </Form.Group>
                 {errors.link && <p style={{color:"red"}}><
-                    small>Link is required</small></p>}
+                    small>This field is required</small></p>}
                 <br></br>
                 <Form.Group>
                     <Form.Label>Description</Form.Label>
@@ -61,7 +96,7 @@ const CreateJobPage=()=>{
                     />
                 </Form.Group>
                 {errors.description && <p style={{color:"red"}}><
-                    small>description is required</small></p>}
+                    small>This field is required</small></p>}
                 <br></br>
                 <Form.Group>
                     <Button 

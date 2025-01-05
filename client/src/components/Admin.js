@@ -102,7 +102,7 @@ export const AdminHome = ()=>{
     }
 
     return (
-        <div className="home container">
+        <main className="home container">
             <Modal
                 show={show}
                 size="lg"
@@ -156,7 +156,7 @@ export const AdminHome = ()=>{
                     )
                 )
             }
-        </div>
+        </main>
     )
 }
 
