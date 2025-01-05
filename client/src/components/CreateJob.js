@@ -46,6 +46,15 @@ const CreateJobPage=()=>{
                     <small>Title should be less than 25 characters</small></p>}
                 <br></br>
                 <Form.Group>
+                    <Form.Label>Link</Form.Label>
+                    <Form.Control type="text"
+                        {...register("link", {required:true})}
+                    />
+                </Form.Group>
+                {errors.link && <p style={{color:"red"}}><
+                    small>Link is required</small></p>}
+                <br></br>
+                <Form.Group>
                     <Form.Label>Description</Form.Label>
                     <Form.Control as={"textarea"} rows={5}
                         {...register("description", {required:true})}

@@ -10,6 +10,7 @@ job_model = job_ns.model(
     {
         "id":fields.Integer(),
         "title":fields.String(),
+        "salary":fields.Integer(),
         "description":fields.String(),
         "date":fields.String(),
         "time":fields.String(),
@@ -43,6 +44,7 @@ class JobResource(Resource):
         data = request.get_json()
         new_job = Job(
             title = data.get('title'),
+            salary = data.get('salary'),
             description = data.get('description'),
             date = data.get('date'),
             time = data.get('time'),
@@ -74,6 +76,7 @@ class JobResource(Resource):
         job_to_update.update(
             data.get('title'),
             data.get('description'),
+            data.get('salary'),
             data.get('job_type'),
             data.get('link')
         )

@@ -2,7 +2,7 @@ import React from "react";
 import {Card} from "react-bootstrap";
 
 
-export const Job=({title,description,date,type,link})=>{
+export const Job=({title,description,date,type,link,salary})=>{
     return (
         <Card className="job">
             <Card.Body>

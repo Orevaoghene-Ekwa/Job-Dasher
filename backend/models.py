@@ -5,6 +5,7 @@ from exts import db
 class Job:
     id:int primary key
     title:str
+    salary: int
     description:str (text)
     date:date
     time:time
@@ -16,6 +17,7 @@ class Job(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     title = db.Column(db.String(), nullable=False)
     description = db.Column(db.Text(), nullable=False)
+    salary = db.Column(db.Integer((), nullable=False))
     date = db.Column(db.Date(), default=date.today, nullable=False)
     time = db.Column(db.Time(), default=datetime.utcnow().time, nullable=False)
     job_type = db.Column(db.Text(), nullable=False)
