@@ -32,7 +32,18 @@ const LoggedInHome = () => {
                 <Modal.Header closeButton>
                     <Modal.Title>{selectedJob?.title}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>{selectedJob?.description}</Modal.Body>
+                <Modal.Body>
+                    <h5>Job Description</h5>
+                    <br/>
+                    <div style={{whiteSpace: 'pre-wrap'}}>{selectedJob?.description}</div>
+                    <br/>
+                    <br/>
+                    <p>
+                        <a href={selectedJob?.link} target="_blank" rel="noopener noreferrer">
+                            <strong>Apply here:</strong>
+                        </a>
+                    </p>
+                </Modal.Body>
             </Modal>
             <h1>Job Listings</h1>
             {jobs.length > 0 ? (
