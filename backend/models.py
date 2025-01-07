@@ -34,8 +34,11 @@ class Job(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    def update(self, title, description):
+    def update(self, title, salary, job_type, link, description):
         self.title = title
+        self.salary = salary
+        self.job_type = job_type
+        self.link = link
         self.description = description
 
         db.session.commit()

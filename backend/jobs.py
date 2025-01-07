@@ -73,10 +73,10 @@ class JobResource(Resource):
         data = request.get_json()
         job_to_update.update(
             data.get('title'),
-            data.get('description'),
             data.get('salary'),
             data.get('job_type'),
-            data.get('link')
+            data.get('link'),
+            data.get('description')
         )
 
         return job_to_update
