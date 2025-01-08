@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Modal, Form, Button, Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 export const AdminHome = ()=>{
 
@@ -189,6 +190,7 @@ export const AdminHome = ()=>{
                 </Modal.Body>
 
             </Modal>
+            <Link to="/create-job">Create Jobs</Link>
             <h1>List of Jobs</h1>
             {
                 jobs.map(

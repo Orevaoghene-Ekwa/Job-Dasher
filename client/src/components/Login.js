@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { login } from "../auth";
 import {useNavigate} from "react-router-dom";
+import loginimage from "../images/signup.webp";
 
 const LoginPage=()=>{
 
@@ -41,52 +42,53 @@ const LoginPage=()=>{
         reset()
     }
     return(
-        <main className="container">
-            <div className="form">
-                {show?
-                    <>
-                        <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-                            <p>
-                                {serverResponse}
-                            </p>
-                        </Alert>
-                        <h1>Login</h1>
-                    </>
-                    :
-                    <h1>Login</h1>
-                }
-                <Form>
-                    <Form.Group>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" 
-                            placeholder=""
-                            {...register('email', {required:true,maxLength:80})}
-                        />
-                        {errors.email && <p style={{color:"red"}}><small>enter a valid email</small></p>}
-                    </Form.Group>
-                    <br></br>
-                    <Form.Group>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password"
-                            {...register('password', {required:true})}
+        <main className="">
+            <div className="hero form">
+                <img src={loginimage} alt="" loading="lazy" data-aos="zoom-out"/>
+                <div className="container d-flex flex-column">
+                    {show?
+                        <>
+                            <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+                                <p>
+                                    {serverResponse}
+                                </p>
+                            </Alert>
+                            <h1>Login</h1>
+                        </>
+                        :
+                        <h1 className="heading">Login</h1>
+                    }
+                    <Form className="lead text-start">
+                        <Form.Group>
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control type="email" 
+                                placeholder=""
+                                {...register('email', {required:true,maxLength:80})}
                             />
-                        {errors.password && <p style={{color:"red"}}><small>password is required</small></p>}
-                    </Form.Group>
-                    <br></br>
-                    <Form.Group>
-                        <Button 
-                            type="submit"
-                            variant="primary" 
-                            onClick={handleSubmit(loginUser)}
-                            >
-                                Login
-                            </Button>
-                    </Form.Group>
-                    <br></br>
-                    <Form.Group>
-                        <small>Don't have an account? <Link to="/signup">Create an account</Link></small>
-                    </Form.Group>
-                </Form>
+                            {errors.email && <p style={{color:"red"}}><small>enter a valid email</small></p>}
+                        </Form.Group>
+                        <br></br>
+                        <Form.Group>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password"
+                                {...register('password', {required:true})}
+                                />
+                            {errors.password && <p style={{color:"red"}}><small>password is required</small></p>}
+                        </Form.Group>
+                        <br></br>
+                        <Form.Group>
+                            <Button 
+                                type="submit"
+                                variant="outline-light" 
+                                onClick={handleSubmit(loginUser)}
+                                >
+                                    Login
+                                </Button>
+                        </Form.Group>
+                        <br></br>
+                    </Form>
+                    <small className="option">Don't have an account? <Link to="/signup">Create account</Link></small>
+                </div>
             </div>
         </main>
     )

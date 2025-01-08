@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/main.css';
-import React from 'react';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import NavBar from './components/Navbar';
 import {
@@ -19,6 +21,12 @@ import Footer from './components/Footer';
 
 const App = ()=>{
 
+    useEffect(() => {
+        AOS.init({
+            duration: 1000, // Animation duration in milliseconds
+            once: true,     // Whether animation should happen only once
+        });
+    }, []);
 
     return (
         <Router>
