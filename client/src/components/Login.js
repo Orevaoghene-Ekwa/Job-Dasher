@@ -45,7 +45,7 @@ const LoginPage=()=>{
         <main className="">
             <div className="hero form">
                 <img src={loginimage} alt="" loading="lazy" data-aos="zoom-out"/>
-                <div className="container d-flex flex-column">
+                <div className="container d-flex flex-column form-card">
                     {show?
                         <>
                             <Alert variant="danger" onClose={() => setShow(false)} dismissible>

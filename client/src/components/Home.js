@@ -74,22 +74,28 @@ const LoggedInHome = () => {
 
 const LoggedOutHome = () => {
     return (
-        <div className="hero">
-            <img src={heroimage} alt="" loading="lazy" data-aos="flip-left"/>
-            <div className="container d-flex flex-column">
-                <h1 className="heading" data-aos="fade-up" data-aos-delay="100">
-                    Welcome to Job Dasher
-                </h1>
-                <p className="lead" data-aos="fade-up" data-aos-delay="200">
-                    Where opportunities and talents meet.
-                </p>
-                <p className="" data-aos="fade-down" data-aos-delay="300">
-                    <Link to="signup" className="btn btn-outline-light btn-lg">
-                        Get Started
-                    </Link>
-                    <br />
-                </p>
+        <div>
+            <div className="hero">
+                <img src={heroimage} alt="" loading="lazy" data-aos="flip-left"/>
+                <div className="container d-flex flex-column">
+                    <h1 className="heading" data-aos="fade-up" data-aos-delay="100">
+                        Welcome to Job Dasher
+                    </h1>
+                    <p className="lead" data-aos="fade-up" data-aos-delay="200">
+                        Where opportunities and talents meet.
+                    </p>
+                    <p className="" data-aos="fade-down" data-aos-delay="300">
+                        <Link to="signup" className="btn btn-outline-light btn-lg">
+                            Get Started
+                        </Link>
+                        <br />
+                    </p>
+                </div>
             </div>
+            {/* <div>
+            <h1>Add stuff</h1>
+                <p>Addding a lot of a stuff kadjcnauihcois ajdskcnahfrvboiedn acjdskncakjsdnc cdsdlknichj dcnkajsdnckj kalndjcaksjdnc akjdnciadvcia adilncianrdiua adklcnaildlni adklcniauodn adcilnfdaivundf adkjcndkannoi</p>
+            </div> */}
         </div>
     );
 };

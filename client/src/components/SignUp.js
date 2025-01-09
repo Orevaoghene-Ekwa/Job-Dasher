@@ -48,7 +48,7 @@ const SignUpPage=()=>{
         <main className="">
             <div className="hero form ">
                 <img src={signupimage} alt="" loading="lazy" data-aos="zoom-out"/>
-                <div className="container d-flex flex-column">
+                <div className="container d-flex flex-column form-card">
 
                     {show?
                         <>

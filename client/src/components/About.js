@@ -7,7 +7,7 @@ const AboutPage=()=>{
             <div className="hero">
                 <img src={aboutimage} alt="" loading="lazy" data-aos="zoom-in"/>
                 <div className="container d-flex flex-column">
-                    <h1 className="heading" data-aos="fade-up" data-aos-delay="100">About Job Dasher</h1>
+                    <h1 className="heading pt-5" data-aos="fade-up" data-aos-delay="100">About Job Dasher</h1>
                     <p className="lead" data-aos="fade-up" data-aos-delay="200">Simplifying Job Management, One Post at a Time</p>
                 </div>
             </div>
