@@ -8,7 +8,8 @@ import NavBar from './components/Navbar';
 import {
     BrowserRouter as Router,
     Routes,
-    Route
+    Route,
+    Navigate
 } from 'react-router-dom'
 import HomePage from './components/Home';
 import SignUpPage from './components/SignUp';
@@ -17,9 +18,15 @@ import CreateJobPage from './components/CreateJob';
 import AdminHome from './components/Admin';
 import AboutPage from './components/About';
 import Footer from './components/Footer';
+import NotFound from './components/404';
+import ProtectedRoute from './components/ProtectedRoute';
+import { useAuth } from './auth';
 
 
 const App = ()=>{
+
+    const [logged]=useAuth()
+    const userRole = localStorage.getItem("userRole")
 
     useEffect(() => {
         AOS.init({
@@ -30,18 +37,45 @@ const App = ()=>{
 
     return (
         <Router>
-            {/* <div className=''> */}
-                <NavBar/>
-                <Routes>
-                    <Route path='/' element={<HomePage />}/>
-                    <Route path='/signup' element={<SignUpPage />}/>
-                    <Route path='/login' element={<LoginPage/>} />
-                    <Route path='/create-job' element={<CreateJobPage/>}/>
-                    <Route path='/admin' element={<AdminHome/>}/>
-                    <Route path='/about' element={<AboutPage/>}/>
-                </Routes>
-                <Footer/>
-            {/* </div>  */}
+            <NavBar/>
+            <Routes>
+                {/* unauthorizedRoutes */}
+                {!logged &&(
+                    <>
+                        <Route path='/' element={<HomePage />}/>
+                        <Route path='home' element={<HomePage/>}/>
+                        <Route path='/signup' element={<SignUpPage />}/>
+                        <Route path='/login' element={<LoginPage/>} />
+                        <Route path='/about' element={<AboutPage/>}/>
+                    </>
+                )}
+
+                {/* ProtectedRoute */}
+                <Route element={<ProtectedRoute/>}>
+                    <Route path='/signup' element={<Navigate to="/"/>}/>
+                    <Route path='/login' element={<Navigate to="/"/>} />
+                    {
+                        userRole != "admin"?
+                        (
+                            <>
+                                <Route path='/' element={<HomePage />}/>
+                                <Route path='/home' element={<HomePage />}/>
+                                <Route path='/about' element={<AboutPage/>}/>
+                            </>
+                        ):
+                        (
+                            <>
+                                <Route path='/' element={<AdminHome />}/>
+                                <Route path='/home' element={<AdminHome/>}/>
+                                <Route path='/admin' element={<AdminHome/>}/>
+                                <Route path='/create-job' element={<CreateJobPage/>}/>
+                            </>
+                        )
+                    }
+                </Route>
+                <Route path='*' element={<NotFound/>}/>
+            </Routes>
+            <Footer/>
         </Router>
     );
 };

@@ -27,12 +27,9 @@ const LoginPage=()=>{
         .then(res=>res.json())
         .then(data=>{
             login(data.access_token)
-            if (data.role === "admin"){
-                navigate("/admin")
-            }
-            else {
-                navigate("/")
-            }
+            const role = data.role
+            localStorage.setItem("userRole", role)
+            navigate("/")
         })
         .catch(err=>{
             setServerResponse("Incorrect email or password")

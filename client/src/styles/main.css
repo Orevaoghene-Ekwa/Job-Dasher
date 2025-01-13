@@ -107,6 +107,9 @@ body {
     font-size: 24px;
   }
   
+.landing-hero {
+    min-height: 90vh;
+}
 
 
 footer {
@@ -129,7 +132,6 @@ header {
 
 .about {
     padding: 2rem;
-    background-color: #dad3d3;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -222,3 +224,20 @@ a:hover {
         max-width: 40vh;
     }
   }
+
+.push {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.box {
+    border: none;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1000px) {
+    .box {
+        
+    }
+}
