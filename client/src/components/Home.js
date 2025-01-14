@@ -9,6 +9,14 @@ const LoggedInHome = () => {
     const [jobs, setJobs] = useState([]);
     const [show, setShow] = useState(false);
     const [selectedJob, setSelectedJob] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const recordsPerPage = 10;
+    const lastIndex = currentPage * recordsPerPage;
+    const firstIndex = lastIndex - recordsPerPage;
+    const records = jobs.slice(firstIndex, lastIndex)
+    const [query, setQuery] = useState("")
+    const npages = Math.ceil(jobs.length / recordsPerPage)
+    const numbers = [...Array(npages + 1).keys()].slice(1)
 
     useEffect(() => {
         fetch("/job/jobs")
@@ -25,6 +33,22 @@ const LoggedInHome = () => {
             setSelectedJob(job);
             setShow(true);
         }
+    };
+
+    const prePage = ()=>{
+        if (currentPage !== 1) {
+            setCurrentPage(currentPage - 1)
+        }
+    };
+
+    const nextPage = ()=>{
+        if (currentPage !== npages) {
+            setCurrentPage(currentPage + 1)
+        }
+    };
+
+    const changeCPage = (id)=>{
+        setCurrentPage(id)
     };
 
     return (
@@ -46,9 +70,18 @@ const LoggedInHome = () => {
                     </p>
                 </Modal.Body>
             </Modal>
-            <h1 style={{color:"black"}}>Job Listings</h1>
-            {jobs.length > 0 ? (
-                jobs.map((job) => (
+            {/* <h1 style={{color:"black"}}>Job Listings</h1> */}
+            <div className="">
+                <input 
+                    type="text" 
+                    placeholder="Search..." 
+                    className="search"
+                    onChange={(e) => setQuery(e.target.value)}
+                    />
+                
+            </div>
+            {records.length > 0 ? (
+                records.map((job) => (
                     <div
                         onClick={() => showModal(job.id)}
                         key={job.id}
@@ -68,6 +101,27 @@ const LoggedInHome = () => {
             ) : (
                 <p>Loading jobs...</p>
             )}
+            <span>
+                <ul className="pagination">
+                    <li className="page-item">
+                        <a href="#" className="page-link" onClick={prePage}>
+                            prev
+                        </a>
+                    </li>
+                    {
+                        numbers.map((n, i) => (
+                            <li className={`page-item ${currentPage === n ? 'active' : ''}`} key={i}>
+                                <a href="#" className="page-link" onClick={()=>changeCPage(n)}>{n}</a>
+                            </li>
+                        ))
+                    }
+                    <li className="page-item">
+                        <a href="#" className="page-link" onClick={nextPage}>
+                            Next
+                        </a>
+                    </li>
+                </ul>
+            </span>
         </div>
     );
 };
