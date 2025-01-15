@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.eebe0431.css",
+    "main.js": "/static/js/main.f2bea8fe.js",
+    "static/media/home.webp": "/static/media/home.fa0341e734ccb68bf7bb.webp",
+    "static/media/signup.webp": "/static/media/signup.04457bae1d6eea67cf2c.webp",
+    "static/media/about.webp": "/static/media/about.0c0f26c7c5327c91adc8.webp",
+    "index.html": "/index.html",
+    "main.eebe0431.css.map": "/static/css/main.eebe0431.css.map",
+    "main.f2bea8fe.js.map": "/static/js/main.f2bea8fe.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.eebe0431.css",
+    "static/js/main.f2bea8fe.js"
+  ]
+}

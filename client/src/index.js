@@ -55,7 +55,7 @@ const App = ()=>{
                     <Route path='/signup' element={<Navigate to="/"/>}/>
                     <Route path='/login' element={<Navigate to="/"/>} />
                     {
-                        userRole != "admin"?
+                        userRole !== "admin"?
                         (
                             <>
                                 <Route path='/' element={<HomePage />}/>

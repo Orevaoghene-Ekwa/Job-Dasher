@@ -101,7 +101,7 @@ const LoggedInHome = () => {
                 />
             </div>
             {jobs.length > 0 ? (
-                records
+                jobs
                     .filter((job) => {
                         const lowerQuery = query.toLowerCase();
                         return (
