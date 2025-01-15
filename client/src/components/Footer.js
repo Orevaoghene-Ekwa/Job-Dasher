@@ -4,12 +4,8 @@ import React from 'react';
 const Footer =()=>{
 
     return ( 
-        <footer className="">
-            <div className="container-fluid">
-                <footer class="text-white-50">
+        <footer class="text-white-50 gradient-background">
                 <span>©Job Dasher 2024.</span>
-            </footer>
-            </div>
         </footer>
     )
 }

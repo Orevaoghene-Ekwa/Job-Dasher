@@ -5,24 +5,28 @@ import Job from "./Job";
 import { Modal } from "react-bootstrap";
 import heroimage from "../images/home.webp"
 
+
 const LoggedInHome = () => {
     const [jobs, setJobs] = useState([]);
     const [show, setShow] = useState(false);
     const [selectedJob, setSelectedJob] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const recordsPerPage = 10;
+    const [query, setQuery] = useState("");
+    const recordsPerPage = 7;
+
     const lastIndex = currentPage * recordsPerPage;
     const firstIndex = lastIndex - recordsPerPage;
-    const records = jobs.slice(firstIndex, lastIndex)
-    const [query, setQuery] = useState("")
-    const npages = Math.ceil(jobs.length / recordsPerPage)
-    const numbers = [...Array(npages + 1).keys()].slice(1)
+    const records = jobs.slice(firstIndex, lastIndex);
+    const npages = Math.ceil(jobs.length / recordsPerPage);
+    const numbers = [...Array(npages + 1).keys()].slice(1);
 
     useEffect(() => {
         fetch("/job/jobs")
             .then((res) => res.json())
             .then((data) => setJobs(data))
-            .catch((err) => console.error("Error fetching jobs:", err));
+            .catch((err) => {
+                setJobs([]);
+            });
     }, []);
 
     const closeModal = () => setShow(false);
@@ -30,101 +34,142 @@ const LoggedInHome = () => {
     const showModal = (id) => {
         const job = jobs.find((job) => job.id === id);
         if (job) {
+            console.log("job found", job)
             setSelectedJob(job);
             setShow(true);
+        } else {
+            console.error("Job not found for id:", id)
         }
     };
 
-    const prePage = ()=>{
+    const prePage = () => {
         if (currentPage !== 1) {
-            setCurrentPage(currentPage - 1)
+            setCurrentPage(currentPage - 1);
         }
     };
 
-    const nextPage = ()=>{
+    const nextPage = () => {
         if (currentPage !== npages) {
-            setCurrentPage(currentPage + 1)
+            setCurrentPage(currentPage + 1);
         }
     };
 
-    const changeCPage = (id)=>{
-        setCurrentPage(id)
+    const changeCPage = (id) => {
+        setCurrentPage(id);
     };
 
     return (
         <div className="home container">
-            <Modal show={show} size="lg" onHide={closeModal}>
+            <Modal 
+                className="text-black modal"
+                show={show} 
+                size="lg" 
+                onHide={closeModal}
+                >
                 <Modal.Header closeButton>
                     <Modal.Title>{selectedJob?.title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <h5>Job Description</h5>
-                    <br/>
-                    <div style={{whiteSpace: 'pre-wrap'}}>{selectedJob?.description}</div>
-                    <br/>
-                    <br/>
+                    <br />
+                    <div style={{ whiteSpace: "pre-wrap" }}>{selectedJob?.description}</div>
+                    <br />
+                    <br />
                     <p>
                         <a href={selectedJob?.link} target="_blank" rel="noopener noreferrer">
                             <strong>Apply here:</strong>
                         </a>
                     </p>
+                    <button onClick={closeModal} className="btn btn-secondary">
+                        Close
+                    </button>
                 </Modal.Body>
             </Modal>
-            {/* <h1 style={{color:"black"}}>Job Listings</h1> */}
-            <div className="">
-                <input 
-                    type="text" 
-                    placeholder="Search..." 
-                    className="search"
+            {/* <div className="hero">
+                <img
+                    src={heroimage}
+                    alt="Hero"
+                    style={{ width: "100%", maxHeight: "300px", objectFit: "cover" }}
+                />
+            </div> */}
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Search..."
+                    className="search-input"
                     onChange={(e) => setQuery(e.target.value)}
-                    />
-                
+                />
             </div>
-            {records.length > 0 ? (
-                records.map((job) => (
-                    <div
-                        onClick={() => showModal(job.id)}
-                        key={job.id}
-                        className="sub"
-                        role="button"
-                        style={{ cursor: "pointer" }}
-                    >
-                        <Job
-                            title={job.title}
-                            date={`Posted: ${job.date}`}
-                            job_type={job.job_type}
-                            salary={job.salary}
-                            link={job.link}
-                        />
-                    </div>
-                ))
+            {jobs.length > 0 ? (
+                records
+                    .filter((job) => {
+                        const lowerQuery = query.toLowerCase();
+                        return (
+                            lowerQuery === "" ||
+                            job.title.toLowerCase().includes(lowerQuery) ||
+                            job.description.toLowerCase().includes(lowerQuery)
+                        );
+                    })
+                    .map((job) => (
+                        <div
+                            onClick={() => showModal(job.id)}
+                            key={job.id}
+                            className="job-card"
+                            role="button"
+                            style={{ cursor: "pointer" }}
+                        >
+                            <Job
+                                title={job.title}
+                                date={`Posted: ${job.date}`}
+                                job_type={job.job_type}
+                                salary={job.salary}
+                                link={job.link}
+                            />
+                        </div>
+                    ))
             ) : (
                 <p>Loading jobs...</p>
             )}
-            <span>
-                <ul className="pagination">
-                    <li className="page-item">
-                        <a href="#" className="page-link" onClick={prePage}>
-                            prev
-                        </a>
+            <ul className="pagination" aria-label="Job Listings Pagination">
+                <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+                    <button 
+                        className="page-link" 
+                        onClick={prePage} 
+                        disabled={currentPage === 1}
+                        aria-label="Go to previous page"
+                    >
+                        Prev
+                    </button>
+                </li>
+                {numbers.map((n) => (
+                    <li 
+                        className={`page-item ${currentPage === n ? "active" : ""}`} 
+                        key={n}
+                    >
+                        <button 
+                            className="page-link" 
+                            onClick={() => changeCPage(n)} 
+                            aria-label={`Go to page ${n}`}
+                        >
+                            {n}
+                        </button>
                     </li>
-                    {
-                        numbers.map((n, i) => (
-                            <li className={`page-item ${currentPage === n ? 'active' : ''}`} key={i}>
-                                <a href="#" className="page-link" onClick={()=>changeCPage(n)}>{n}</a>
-                            </li>
-                        ))
-                    }
-                    <li className="page-item">
-                        <a href="#" className="page-link" onClick={nextPage}>
-                            Next
-                        </a>
-                    </li>
-                </ul>
-            </span>
+                ))}
+                <li className={`page-item ${currentPage === numbers.length ? "disabled" : ""}`}>
+                    <button 
+                        className="page-link" 
+                        onClick={nextPage} 
+                        disabled={currentPage === numbers.length}
+                        aria-label="Go to next page"
+                    >
+                        Next
+                    </button>
+                </li>
+            </ul>
         </div>
     );
 };
+
 
 const LoggedOutHome = () => {
     return (
@@ -199,12 +244,12 @@ const LoggedOutHome = () => {
                 <h2 className="text-center mb-4">What Our Users Say</h2>
                 <blockquote className="blockquote text-center">
                     <p className="mb-0">"Job Dasher helped me land my dream job in no time. Highly recommended!"</p>
-                    <small className="blockquote-footer">Jane Doe, <cite title="Source Title">Software Engineer</cite></small>
+                    <small className="blockquote-footer">Jane Doe, <cite title="">Software Engineer</cite></small>
                 </blockquote>
             </div>
 
             {/* Call to Action Section */}
-            <div className="cta bg-primary text-white text-center py-5" data-aos="fade-up">
+            <div className="cta text-white text-center" data-aos="fade-up">
                 <h2>Ready to Kickstart Your Career?</h2>
                 <Link to="signup" className="btn btn-light  mt-3">
                     Sign Up Now
