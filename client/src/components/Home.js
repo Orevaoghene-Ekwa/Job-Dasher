@@ -14,12 +14,6 @@ const LoggedInHome = () => {
     const [query, setQuery] = useState("");
     const recordsPerPage = 7;
 
-    const lastIndex = currentPage * recordsPerPage;
-    const firstIndex = lastIndex - recordsPerPage;
-    const records = jobs.slice(firstIndex, lastIndex);
-    const npages = Math.ceil(jobs.length / recordsPerPage);
-    const numbers = [...Array(npages + 1).keys()].slice(1);
-
     useEffect(() => {
         fetch("/job/jobs")
             .then((res) => res.json())
@@ -34,11 +28,10 @@ const LoggedInHome = () => {
     const showModal = (id) => {
         const job = jobs.find((job) => job.id === id);
         if (job) {
-            console.log("job found", job)
             setSelectedJob(job);
             setShow(true);
         } else {
-            console.error("Job not found for id:", id)
+            console.error("Job not found for id:", id);
         }
     };
 
@@ -58,14 +51,31 @@ const LoggedInHome = () => {
         setCurrentPage(id);
     };
 
+    // Filter jobs based on the query
+    const filteredJobs = jobs.filter((job) => {
+        const lowerQuery = query.toLowerCase();
+        return (
+            lowerQuery === "" ||
+            job.title.toLowerCase().includes(lowerQuery) ||
+            job.description.toLowerCase().includes(lowerQuery)
+        );
+    });
+
+    // Calculate pagination details based on filtered jobs
+    const lastIndex = currentPage * recordsPerPage;
+    const firstIndex = lastIndex - recordsPerPage;
+    const records = filteredJobs.slice(firstIndex, lastIndex);
+    const npages = Math.ceil(filteredJobs.length / recordsPerPage);
+    const numbers = [...Array(npages + 1).keys()].slice(1);
+
     return (
         <div className="home container">
-            <Modal 
+            <Modal
                 className="text-black modal"
-                show={show} 
-                size="lg" 
+                show={show}
+                size="lg"
                 onHide={closeModal}
-                >
+            >
                 <Modal.Header closeButton>
                     <Modal.Title>{selectedJob?.title}</Modal.Title>
                 </Modal.Header>
@@ -85,56 +95,43 @@ const LoggedInHome = () => {
                     </button>
                 </Modal.Body>
             </Modal>
-            {/* <div className="hero">
-                <img
-                    src={heroimage}
-                    alt="Hero"
-                    style={{ width: "100%", maxHeight: "300px", objectFit: "cover" }}
-                />
-            </div> */}
             <div className="search-container">
                 <input
                     type="text"
                     placeholder="Search..."
                     className="search-input"
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={(e) => {
+                        setQuery(e.target.value);
+                        setCurrentPage(1); // Reset to first page on search
+                    }}
                 />
             </div>
-            {jobs.length > 0 ? (
-                jobs
-                    .filter((job) => {
-                        const lowerQuery = query.toLowerCase();
-                        return (
-                            lowerQuery === "" ||
-                            job.title.toLowerCase().includes(lowerQuery) ||
-                            job.description.toLowerCase().includes(lowerQuery)
-                        );
-                    })
-                    .map((job) => (
-                        <div
-                            onClick={() => showModal(job.id)}
-                            key={job.id}
-                            className="job-card"
-                            role="button"
-                            style={{ cursor: "pointer" }}
-                        >
-                            <Job
-                                title={job.title}
-                                date={`Posted: ${job.date}`}
-                                job_type={job.job_type}
-                                salary={job.salary}
-                                link={job.link}
-                            />
-                        </div>
-                    ))
+            {records.length > 0 ? (
+                records.map((job) => (
+                    <div
+                        onClick={() => showModal(job.id)}
+                        key={job.id}
+                        className="job-card"
+                        role="button"
+                        style={{ cursor: "pointer" }}
+                    >
+                        <Job
+                            title={job.title}
+                            date={`Posted: ${job.date}`}
+                            job_type={job.job_type}
+                            salary={job.salary}
+                            link={job.link}
+                        />
+                    </div>
+                ))
             ) : (
-                <p>Loading jobs...</p>
+                <p>No jobs found.</p>
             )}
             <ul className="pagination" aria-label="Job Listings Pagination">
                 <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
-                    <button 
-                        className="page-link" 
-                        onClick={prePage} 
+                    <button
+                        className="page-link"
+                        onClick={prePage}
                         disabled={currentPage === 1}
                         aria-label="Go to previous page"
                     >
@@ -142,13 +139,13 @@ const LoggedInHome = () => {
                     </button>
                 </li>
                 {numbers.map((n) => (
-                    <li 
-                        className={`page-item ${currentPage === n ? "active" : ""}`} 
+                    <li
+                        className={`page-item ${currentPage === n ? "active" : ""}`}
                         key={n}
                     >
-                        <button 
-                            className="page-link" 
-                            onClick={() => changeCPage(n)} 
+                        <button
+                            className="page-link"
+                            onClick={() => changeCPage(n)}
                             aria-label={`Go to page ${n}`}
                         >
                             {n}
@@ -156,9 +153,9 @@ const LoggedInHome = () => {
                     </li>
                 ))}
                 <li className={`page-item ${currentPage === numbers.length ? "disabled" : ""}`}>
-                    <button 
-                        className="page-link" 
-                        onClick={nextPage} 
+                    <button
+                        className="page-link"
+                        onClick={nextPage}
                         disabled={currentPage === numbers.length}
                         aria-label="Go to next page"
                     >
