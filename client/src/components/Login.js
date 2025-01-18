@@ -46,9 +46,7 @@ const LoginPage=()=>{
                     {show?
                         <>
                             <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-                                <p>
                                     {serverResponse}
-                                </p>
                             </Alert>
                             <h1>Login</h1>
                         </>
