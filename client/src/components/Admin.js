@@ -198,7 +198,7 @@ export const AdminHome = ()=>{
                         <EditJob 
                             title={job.title} 
                             key={index}
-                            description={job.description}
+                            // description={job.description}
                             onClick={()=>{showModal(job.id)}}
                             onDelete={()=>{deleteJob(job.id)}}
                         />
