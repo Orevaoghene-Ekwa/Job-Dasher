@@ -55,7 +55,7 @@ class User:
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(25), nullable=False)
+    username = db.Column(db.String(25), nullable=False, unique=True)
     email = db.Column(db.String(80), nullable=False, unique=True)
     password = db.Column(db.Text(), nullable=False)
 
@@ -69,3 +69,20 @@ class User(db.Model):
     def delete(self):
         db.session.delete(self)
         db.commit()
+
+
+class OTPStore(db.Model):
+    __tablename__ = 'otp_store'
+
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), nullable=False)
+    otp = db.Column(db.Integer, nullable=False)
+    expires_at = db.Column(db.DateTime, nullable=False)
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()

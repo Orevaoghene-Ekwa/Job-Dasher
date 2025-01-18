@@ -21,6 +21,7 @@ import Footer from './components/Footer';
 import NotFound from './components/404';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useAuth } from './auth';
+import VerifyOtpPage from './components/VerifyOTP';
 
 
 const App = ()=>{
@@ -45,6 +46,7 @@ const App = ()=>{
                         <Route path='/' element={<HomePage />}/>
                         <Route path='home' element={<HomePage/>}/>
                         <Route path='/signup' element={<SignUpPage />}/>
+                        <Route path='/verify-otp' element={<VerifyOtpPage />}/>
                         <Route path='/login' element={<LoginPage/>} />
                         <Route path='/about' element={<AboutPage/>}/>
                     </>
