@@ -15,6 +15,11 @@ auth_ns = Namespace('auth', description="A namespace for authentication")
 admin_email = config('ADMIN_EMAIL')
 admin_password = config('ADMIN_PASSWORD')
 
+PORT = config('MAIL_PORT')
+MAIL_SERVER = config('MAIL_SERVER')
+MAIL_PASSWORD = config('MAIL_PASSWORD')
+MAIL_SENDER = config('MAIL_SENDER')
+
 sign_up_model = auth_ns.model(
     "SignUp",
     {
@@ -67,11 +72,11 @@ class SignUp(Resource):
 
             try:
                 # Send OTP to email
-                with smtplib.SMTP("smtp.gmail.com", 587) as connection:
+                with smtplib.SMTP(MAIL_SERVER, PORT) as connection:
                     connection.starttls()
-                    connection.login(user="jobemblem@gmail.com", password="euyzbcvuoavfvhjj")
+                    connection.login(user=MAIL_SENDER, password=MAIL_PASSWORD)
                     connection.sendmail(
-                        from_addr="jobemblem@gmail.com",
+                        from_addr=MAIL_SENDER,
                         to_addrs=email,
                         msg=f"Subject:Your One Time Password\n\nYour OTP is {otp}. \nIt is valid for 10 minutes"
                     )
