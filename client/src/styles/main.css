@@ -371,3 +371,7 @@ a:hover {
     text-align: center; /* Centers text horizontally */
     padding: 20px; /* Adds padding for better spacing */
 }
+
+.dark-text {
+    color: black;
+}

@@ -110,8 +110,8 @@ export const AdminHome = ()=>{
             <Modal
                 show={show}
                 size="lg"
+                className="dark-text"
                 onHide={closeModal}
-                className="text-black"
             >
                 <Modal.Header closeButton>
                     <Modal.Title>
